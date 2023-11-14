@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1 , user-scalable=no">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: aliceblue;
+        }
+        #container {
+            width: 300px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background-color: gray;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.174);
+            border: 1px solid gray;
+            animation: move 1.5s linear ;
+            position: fixed;
+        }
+
+        #text{
+            margin-top: 10px;
+            color: white;
+         margin-left: 30px;
+         width: 100%;
+         height: 20px;
+         display: flex;
+         align-items: center;
+         justify-content: start;
+         font-size: 13px;
+        }
+
+        span{
+            margin-left: 2px;
+        }
+        input{
+            width: 85%;
+            height: 30px;
+            border: none;
+            padding-left: 10px;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 600;
+            overflow-x: scroll;
+                  
+        }
+
+#buttons{
+    width: 90%;
+    height: 60%;
+    
+    background-color: blueviolet;
+    display: flex;   
+    align-items: center;
+    flex-wrap: wrap;
+}
+button {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Set to a transparent color */
+    /* Your other button styles go here */
+}
+
+button{
+    color: white;
+    width: 25%;
+    height: 50px;
+    background-color: purple;
+    border: 0.5px solid #000000;
+    box-shadow: inset 0px 0px 5px rgba(128, 128, 128, 0.329);
+}
+
+#orange{
+background-color: orange;
+color: white;
+font-size: 17px;
+}
+
+@keyframes move {
+    from {
+      transform: translateX(-1000px);
+    } to{
+         transform: translateX(0);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div id="container">
+    
+   <div id="text">
+    <span id="p">  </span> <span id="p1"> </span> <span id="p2"> </span>
+</div>
+   
+    
+   
+    <input id="input" type="text">
+
+
+<div id="buttons">
+    <button onclick="arit(modul)">%</button>
+    <button onclick="reset()">CE</button>
+    <button onclick="reset()"> C</button>
+    <button id="orange" onclick="removeChar()"> <iconify-icon icon="bxs:tag-x" width="24"></iconify-icon> </button>
+    <button onclick="overX()"> 1/x</button>
+    <button  onclick="square()"> ^2 </button>
+    <button  onclick="squareRoot()"> √ </button>
+    <button id="orange" onclick="arit(div)"> ÷ </button>
+    <button  onclick="addVal(7)"> 7 </button>
+    <button  onclick="addVal(8)"> 8 </button>
+    <button  onclick="addVal(9)"> 9 </button>
+    <button id="orange"  onclick="arit(times)"> x </button>
+    <button onclick="addVal(4)"> 4  </button>
+    <button onclick="addVal(5)"> 5  </button>
+    <button onclick="addVal(6)"> 6  </button>
+    <button id="orange" onclick="arit(subtract)">-</button>
+    <button onclick="addVal(1)"> 1  </button>
+    <button onclick="addVal(2)"> 2 </button>
+    <button onclick="addVal(3)"> 3  </button>
+    <button id="orange" onclick="arit(plus)">+</button>
+    <button onclick="addVal('-')">+/-</button>
+    <button onclick="addVal(0)">0</button>
+    <button onclick="addVal('.')">.</button>
+    <button id="orange" onclick="equal()"> =</button>
+    
+</div>
+</div>
+</body>
+</html>
+<script>
+    let p = document.getElementById('p')
+    let input = document.getElementById('input')
+    let h1 = document.getElementById('h1')
+    let p1 = document.getElementById('p1')
+    let p2 = document.getElementById('p2')
+
+    let plus = "+"
+    let subtract = "-"
+    let modul = "%"
+    let times = "x"
+    let div = "/"
+  
+function arit(val){ 
+    let p1Content = p1.textContent.trim();
+    let p2Content = p2.textContent.trim();
+    let pContent = p.textContent.trim();
+
+if(p1Content === '') {
+   p1.innerHTML = val 
+   input.value = ''
+   }  
+ else  if (p1Content == plus){
+    let ans =   Number(p.innerHTML) + Number(p2.innerHTML) 
+    console.log(val);
+    input.value = ans 
+    p.innerHTML = ans 
+    p1.innerHTML = val
+    input.value = ''
+    p2.innerHTML = ' ' 
+   } 
+   else  if (p1.innerHTML == subtract){
+    let ans = Number(p.innerHTML) - Number(p2.innerHTML) 
+    input.value = ans 
+    p.innerHTML = ans 
+    p1.innerHTML = val
+    input.value = ''
+    p2.innerHTML = ' ' 
+    }
+    else  if (p1.innerHTML == modul){
+    let ans = Number(p.innerHTML) % Number(p2.innerHTML) 
+    input.value = ans
+    p.innerHTML = ans 
+    p1.innerHTML = val
+    input.value = ''
+    p2.innerHTML = ' ' 
+    }
+    else  if (p1.innerHTML == div){
+    let ans = Number(p.innerHTML) / Number(p2.innerHTML) 
+    input.value = ans
+    p.innerHTML = ans 
+    p1.innerHTML =  val
+    input.value = ''
+    p2.innerHTML = ' ' 
+    }
+    else  if (p1.innerHTML == times){
+    let ans = Number(p.innerHTML) * Number(p2.innerHTML) 
+    input.value = ans
+    p.innerHTML = ans
+    p1.innerHTML = val
+    input.value = ''
+    p2.innerHTML = ''  
+    }
+ 
+}
+
+
+
+
+ function removeChar() {
+    let p1Content = p1.textContent.trim();
+    let p2Content = p2.textContent.trim();
+    let pContent = p.textContent.trim();
+    if (p1Content !== '' && p2Content !== '') {
+        p2.innerHTML = p2Content.slice(0, -1);
+        input.value =  p2Content.slice(0, -1);
+    }
+    
+    else if (p1Content === '' && p2Content === '' && pContent !== '') {
+        p.innerHTML = pContent.slice(0, -1);
+        input.value = pContent.slice(0, -1);
+    }
+}
+
+
+
+
+     
+
+
+
+ function square (){
+    input.value = Number(p.innerHTML) ** 2
+    p.innerHTML = input.value
+ }
+
+ function squareRoot(){
+    input.value = Math.sqrt((Number(p.innerHTML)))
+    p.innerHTML = input.value
+ }
+
+ function overX(){
+    input.value = 1 / Number(p.innerHTML)
+    p.innerHTML = input.value
+ }
+
+
+
+ function addVal( para) {
+if (p1.innerHTML == ' '){
+   let  three = input.value += para 
+    p.innerHTML = three }
+  else if(p1.innerHTML == plus || subtract || modul || times || div){
+        let four = input.value += para  
+    p2.innerHTML = four
+
+    }
+    
+ }
+
+
+
+
+
+ function equal(){
+    if (p1.innerHTML == plus){
+    let ans = Number(p.innerHTML) + Number(p2.innerHTML) 
+    input.value = ans
+    p.innerHTML = ans
+    p1.innerHTML = ' '
+    p2.innerHTML = ' ' 
+    }
+  else  if (p1.innerHTML == subtract){
+    let ans = Number(p.innerHTML) - Number(p2.innerHTML) 
+    input.value = ans
+    p.innerHTML = ans
+    p1.innerHTML = ' '
+    p2.innerHTML = ' ' 
+    }
+    else  if (p1.innerHTML == modul){
+    let ans = Number(p.innerHTML) % Number(p2.innerHTML) 
+    input.value = ans
+    p.innerHTML = ans
+    p1.innerHTML = ' '
+    p2.innerHTML = ' ' 
+    }
+    else  if (p1.innerHTML == div){
+    let ans = Number(p.innerHTML) / Number(p2.innerHTML) 
+    input.value = ans
+    p.innerHTML = ans
+    p1.innerHTML = ' '
+    p2.innerHTML = ' ' 
+    }
+    else  if (p1.innerHTML == times){
+    let ans = Number(p.innerHTML) * Number(p2.innerHTML) 
+    input.value = ans
+    p.innerHTML = ans
+    p1.innerHTML = ' '
+    p2.innerHTML = ' ' 
+    }
+ }
+
+function reset(){
+    let p1Content = p1.textContent.trim();
+    let p2Content = p2.textContent.trim();
+    let pContent = p.textContent.trim();
+    
+    input.value = input.value.slice(0,0);
+        p.innerHTML =  pContent.slice(0, 0); 
+        p1.innerHTML =  ' ';
+        p2.innerHTML =  p2Content.slice(0, 0);
+      
+}
+</script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
